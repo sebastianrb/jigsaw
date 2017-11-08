@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jigsaw Puzzle</title>
+        <link rel="stylesheet" href="./style.css"/>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+        <script defer src="./main.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <section class="left-section">
+                <!-- <button class="hide">Hide Solved Puzzle</button> -->
+                <div class="left-section__timer-container">
+                    <p class="left-section__timer-container__timer"></p>
+                    <p class="out-of-time-message">You are out of time. Click "Restart" to try again.</p>
+                </div>
+                <button class="left-section__button left-section__start-button">Start Puzzle</button>
+                <div class="button-wrapper">
+                    <button class="left-section__button left-section__hint-button">Click and hold to show hint</button>
+                </div>
+            </section>
+            <section class="right-section">
+                <div class="puzzle-board-container load-hidden">
+                    <div class="puzzle-board-container__lose-overlay lose-overlay--inactive"></div>
+                    <img class="puzzle-board-image puzzle-board-image--unsolved" src="./hexagon_puzzle-assets/puzzle-unsolved.png" alt="placeholder unsolved image">
+                    <img class="puzzle-board-image puzzle-board-image--solved" src="./hexagon_puzzle-assets/puzzle-solved.png" alt="placeholder solved image">
+                    <div class="puzzle-grid">
+
+                        <div class="board-column column-1">
+                            <div class="puzzle-board-space-1"  id="space-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            <div class="puzzle-board-space-2"  id="space-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            <div class="puzzle-board-space-3"  id="space-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            <div class="puzzle-board-space-4"  id="space-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            <div class="puzzle-board-space-5"  id="space-5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        </div>
+
+                        <div class="board-column column-2">
+                            <div class="puzzle-board-space-6"  id="space-6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            <div class="puzzle-board-space-7"  id="space-7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            <div class="puzzle-board-space-8"  id="space-8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            <div class="puzzle-board-space-9"  id="space-9" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        </div>
+
+                        <div class="board-column column-3">
+                            <div class="puzzle-board-space-10" id="space-10"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-11" id="space-11"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-12" id="space-12"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-13" id="space-13"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-14" id="space-14"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                        </div>
+
+                        <div class="board-column column-4">
+                            <div class="puzzle-board-space-15" id="space-15"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-16" id="space-16"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-17" id="space-17"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-18" id="space-18"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                        </div>
+
+                        <div class="board-column column-5">
+                            <div class="puzzle-board-space-19" id="space-19"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-20" id="space-20"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-21" id="space-21"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-22" id="space-22"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-23" id="space-23"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                        </div>
+
+                        <div class="board-column column-6">
+                            <div class="puzzle-board-space-24" id="space-24"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-25" id="space-25"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-26" id="space-26"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-27" id="space-27"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                        </div>
+
+                        <div class="board-column column-7">
+                            <div class="puzzle-board-space-28" id="space-28"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-29" id="space-29"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-30" id="space-30"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-31" id="space-31"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-32" id="space-32"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                        </div>
+
+                        <div class="board-column column-8">
+                            <div class="puzzle-board-space-33" id="space-33"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-34" id="space-34"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-35" id="space-35"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-36" id="space-36"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                        </div>
+
+                        <div class="board-column column-9">
+                            <div class="puzzle-board-space-37" id="space-37"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-38" id="space-38"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-39" id="space-39"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-40" id="space-40"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                            <div class="puzzle-board-space-41" id="space-41"  ondrop="drop(event)" ondragover="allowDrop(event)""></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="start-positions-container">
+                    <p class="start-positions-container__placeholder">Puzzle pieces will go here</p>
+                    <div class="start-positions-container-grid">
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-1" data-puzzle-id="1" src="./hexagon_puzzle-assets/ordered-pieces/piece-1.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-1"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-2" data-puzzle-id="2" src="./hexagon_puzzle-assets/ordered-pieces/piece-2.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-2"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-3" data-puzzle-id="3" src="./hexagon_puzzle-assets/ordered-pieces/piece-3.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-3"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-4" data-puzzle-id="4" src="./hexagon_puzzle-assets/ordered-pieces/piece-4.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-4"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-5" data-puzzle-id="5" src="./hexagon_puzzle-assets/ordered-pieces/piece-5.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-5"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-6" data-puzzle-id="6" src="./hexagon_puzzle-assets/ordered-pieces/piece-6.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-6"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-7" data-puzzle-id="7" src="./hexagon_puzzle-assets/ordered-pieces/piece-7.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-7"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-8" data-puzzle-id="8" src="./hexagon_puzzle-assets/ordered-pieces/piece-8.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-8"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-9" data-puzzle-id="9" src="./hexagon_puzzle-assets/ordered-pieces/piece-9.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-9"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-10" data-puzzle-id="10" src="./hexagon_puzzle-assets/ordered-pieces/piece-10.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-10"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-11" data-puzzle-id="11" src="./hexagon_puzzle-assets/ordered-pieces/piece-11.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-11"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-12" data-puzzle-id="12" src="./hexagon_puzzle-assets/ordered-pieces/piece-12.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-12"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-13" data-puzzle-id="13" src="./hexagon_puzzle-assets/ordered-pieces/piece-13.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-13"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-14" data-puzzle-id="14" src="./hexagon_puzzle-assets/ordered-pieces/piece-14.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-14"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-15" data-puzzle-id="15" src="./hexagon_puzzle-assets/ordered-pieces/piece-15.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-15"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-16" data-puzzle-id="16" src="./hexagon_puzzle-assets/ordered-pieces/piece-16.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-16"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-17" data-puzzle-id="17" src="./hexagon_puzzle-assets/ordered-pieces/piece-17.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-17"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-18" data-puzzle-id="18" src="./hexagon_puzzle-assets/ordered-pieces/piece-18.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-18"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-19" data-puzzle-id="19" src="./hexagon_puzzle-assets/ordered-pieces/piece-19.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-19"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-20" data-puzzle-id="20" src="./hexagon_puzzle-assets/ordered-pieces/piece-20.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-20"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-21" data-puzzle-id="21" src="./hexagon_puzzle-assets/ordered-pieces/piece-21.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-21"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-22" data-puzzle-id="22" src="./hexagon_puzzle-assets/ordered-pieces/piece-22.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-22"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-23" data-puzzle-id="23" src="./hexagon_puzzle-assets/ordered-pieces/piece-23.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-23"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-24" data-puzzle-id="24" src="./hexagon_puzzle-assets/ordered-pieces/piece-24.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-24"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-25" data-puzzle-id="25" src="./hexagon_puzzle-assets/ordered-pieces/piece-25.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-25"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-26" data-puzzle-id="26" src="./hexagon_puzzle-assets/ordered-pieces/piece-26.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-26"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-27" data-puzzle-id="27" src="./hexagon_puzzle-assets/ordered-pieces/piece-27.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-27"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-28" data-puzzle-id="28" src="./hexagon_puzzle-assets/ordered-pieces/piece-28.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-28"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-29" data-puzzle-id="29" src="./hexagon_puzzle-assets/ordered-pieces/piece-29.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-29"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-30" data-puzzle-id="30" src="./hexagon_puzzle-assets/ordered-pieces/piece-30.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-30"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-31" data-puzzle-id="31" src="./hexagon_puzzle-assets/ordered-pieces/piece-31.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-31"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-32" data-puzzle-id="32" src="./hexagon_puzzle-assets/ordered-pieces/piece-32.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-32"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-33" data-puzzle-id="33" src="./hexagon_puzzle-assets/ordered-pieces/piece-33.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-33"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-34" data-puzzle-id="34" src="./hexagon_puzzle-assets/ordered-pieces/piece-34.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-34"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-35" data-puzzle-id="35" src="./hexagon_puzzle-assets/ordered-pieces/piece-35.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-35"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-36" data-puzzle-id="36" src="./hexagon_puzzle-assets/ordered-pieces/piece-36.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-36"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-37" data-puzzle-id="37" src="./hexagon_puzzle-assets/ordered-pieces/piece-37.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-37"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-38" data-puzzle-id="38" src="./hexagon_puzzle-assets/ordered-pieces/piece-38.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-38"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-39" data-puzzle-id="39" src="./hexagon_puzzle-assets/ordered-pieces/piece-39.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-39"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-40" data-puzzle-id="40" src="./hexagon_puzzle-assets/ordered-pieces/piece-40.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-40"></div>
+
+                        <div class="puzzle-piece-start-container puzzle-piece-hidden" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="puzzle-piece" id="piece-41" data-puzzle-id="41" src="./hexagon_puzzle-assets/ordered-pieces/piece-41.png" alt="puzzle piece" draggable="true" ondragstart="drag(event)" id="puzzle-id-41"></div>
+
+                    </div>
+                    <!-- <div class="practice-drop-location" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div class="practice-drop-location" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div class="initial-positions-container">
+                        <div class="initial-position" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div class="practice-item" draggable="true" ondragstart="drag(event)" id="piece-1">
+                            <p class="piece-text">Piece</p>
+                        </div>
+                    </div> -->
+                </div>
+            </section>
+            <div class="increase-difficulty-container difficulty-container-hidden">
+                <button class="increase-difficulty-container__button left-section__button">Make this harder</button>
+            </div>
+        </div>
+    </body>
+</html>

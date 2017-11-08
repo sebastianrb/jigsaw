@@ -1,0 +1,537 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: Arial;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: hidden;
+    max-width: 1500px;
+    overflow-x: hidden;
+}
+
+button:focus {
+    outline: none;
+}
+
+
+.wrapper {
+    height: 100%;
+    /*overflow-x: scroll;*/
+    min-width: 1000px;
+    position: relative;
+}
+
+.left-section {
+    width: 18%;
+    height: 100%;
+    float: left;
+    background: radial-gradient(circle, rgb(16, 16, 94), #010138);
+    display: flex;
+    box-shadow: 4px -1px 20px 2px rgba(0, 0, 0, 0.27);
+    position: relative;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 20px;
+}
+
+.right-section {
+    height: 100%;
+    float: left;
+    width: 82%;
+    background-color: white;
+    display: block;
+    overflow: auto;
+    /*padding: 20px;*/
+    padding: 10px 20px 20px;
+}
+
+.practice-drop-location {
+    width: 100px;
+    height: 100px;
+    border: 1px solid navy;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.puzzle-board-container {
+    margin: 50px auto;
+    display: block;
+    /*width: 85%;*/
+    width: 850px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: top 1s ease-out .2s;
+    top: 0;
+}
+
+.puzzle-board-container.load-hidden {
+    top: -210%;
+    transition: top .8s ease .2s;
+}
+
+.initial-positions-container {
+    position: relative;
+    width: 100px;
+}
+
+
+.puzzle-board-image {
+    width: 100%;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    -ms-transition: all .5s;
+    transition: all .5s;
+    vertical-align: top;
+}
+
+.puzzle-board-image--solved {
+    z-index: 1000;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.puzzle-board-image--usolved {
+    z-index: 50;
+    position: relative;
+}
+
+.puzzle-board-container__lose-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5000;
+    background-color: rgba(0, 0, 0, 0.59);
+    cursor: auto;
+    opacity: 1;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    -ms-transition: all .5s;
+    transition: all .5s;
+}
+
+.puzzle-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 0 55px;
+}
+
+.puzzle-grid div[class^="puzzle-board-space-"] {
+    width: 110px;
+    height: 95px;
+/*    background-color: rgba(255, 255, 255, 0.05);*/
+    position: absolute;
+    display: inline-block;
+    z-index: 500;
+/*    border: 1px solid coral;*/
+}
+
+.puzzle-grid div[class^="puzzle-board-space-"] img {
+    height: 100%;
+}
+
+.board-column.column-1 div {
+    left: 39px;
+}
+
+.board-column.column-2 div {
+    left: 121px
+}
+
+.board-column.column-3 div {
+    left: 204px;
+}
+
+.board-column.column-4 div {
+    left: 286px;
+}
+
+.board-column.column-5 div {
+    left: 368px;
+}
+
+.board-column.column-6 div {
+    left: 451px;
+}
+
+.board-column.column-7 div {
+    left: 533px;
+}
+
+.board-column.column-8 div {
+    left: 616px;
+}
+
+.board-column.column-9 div {
+    left: 697px;
+}
+
+.puzzle-board-space-1,
+.puzzle-board-space-10,
+.puzzle-board-space-19,
+.puzzle-board-space-28,
+.puzzle-board-space-37 {
+    top: 45px;
+}
+
+.puzzle-board-space-2,
+.puzzle-board-space-11,
+.puzzle-board-space-20,
+.puzzle-board-space-29,
+.puzzle-board-space-38 {
+    top: 140px;
+}
+
+.puzzle-board-space-3,
+.puzzle-board-space-12,
+.puzzle-board-space-21,
+.puzzle-board-space-30,
+.puzzle-board-space-39 {
+    top: 235px;
+}
+
+.puzzle-board-space-4,
+.puzzle-board-space-13,
+.puzzle-board-space-22,
+.puzzle-board-space-31,
+.puzzle-board-space-40 {
+    top: 330px;
+}
+
+.puzzle-board-space-5,
+.puzzle-board-space-14,
+.puzzle-board-space-23,
+.puzzle-board-space-32,
+.puzzle-board-space-41 {
+    top: 425px;
+}
+
+.puzzle-board-space-6,
+.puzzle-board-space-15,
+.puzzle-board-space-24,
+.puzzle-board-space-33 {
+    /*top: 185px;*/
+    top: 92px;
+}
+
+.puzzle-board-space-7,
+.puzzle-board-space-16,
+.puzzle-board-space-25,
+.puzzle-board-space-34 {
+    top: 187px;
+}
+
+.puzzle-board-space-8,
+.puzzle-board-space-17,
+.puzzle-board-space-26,
+.puzzle-board-space-35 {
+    top: 282px;
+}
+
+.puzzle-board-space-9,
+.puzzle-board-space-18,
+.puzzle-board-space-27,
+.puzzle-board-space-36 {
+    top: 377px;
+}
+
+.practice-item {
+    width: 100px;
+    height: 100px;
+    background: navy;
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+}
+
+.initial-position {
+    width: 100px;
+    height: 100px;
+    background: rgba(0, 0, 128, 0.54);
+}
+
+.left-section__timer-container {
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+    padding: 0 17px;
+}
+
+.left-section__timer-container.timer-container-expanded {
+    height: 14em;
+}
+
+.piece-text {
+    margin: 0 auto;
+    color: white;
+    text-align: center;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+
+
+.left-section__timer-container__timer {
+    color: white;
+    border: 3px solid white;
+    display: flex;
+    padding: 10px;
+    width: 4.5em;
+    height: 4.5em;
+    border-radius: 50%;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px auto;
+    font-size: 1.5em;
+    text-align: center;
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    -o-transition: all .4s;
+    -ms-transition: all .4s;
+    transition: all .4s;
+}
+
+.left-section__button {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-size: 1.15em;
+    border: 2px solid white;
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 3px;
+    -webkit-transition: all .1s;
+    -moz-transition: all .1s;
+    -o-transition: all .1s;
+    -ms-transition: all .1s;
+    transition: all .1s;
+    cursor: pointer;
+    width: 70%;
+}
+
+.left-section__button:hover {
+    background-color: white;
+    color: navy;
+}
+
+.button-wrapper {
+    text-align: center;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height .3s;
+    -moz-transition: height .3s;
+    -o-transition: height .3s;
+    -ms-transition: height .3s;
+    transition: height .3s;
+}
+
+.button-wrapper.button-wrapper-expanded {
+    height: 210px;
+}
+
+.out-of-time-message {
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    transition: all .3s linear;
+}
+
+.out-of-time-message.out-of-time-expanded {
+    height: 50px;
+/*    margin: 20px;*/
+}
+
+.start-positions-container {
+    width: 100%;
+    margin: 20px auto;
+    /*height: auto;*/
+    min-height: 350px;
+    padding: 20px;
+    position: relative;
+}
+
+.start-positions-container__placeholder {
+    position: absolute;
+    color: rgba(1, 1, 56, 0.4);
+    top: 27%;
+    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.2em;
+    transition: opacity .2s;
+}
+
+.start-positions-container__placeholder.placeholder-hidden {
+    opacity: 0;
+}
+
+placeholder-hidden
+
+.left-section__hint-button {
+    -webkit-transition: all .1s;
+    -moz-transition: all .1s;
+    -o-transition: all .1s;
+    -ms-transition: all .1s;
+    transition: all .1s;
+    min-width: 130px;
+}
+
+/*piece grid */
+.start-positions-container-grid {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    height: 100px;
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    -o-transition: all .4s;
+    -ms-transition: all .4s;
+    transition: all .4s;
+}
+
+.puzzle-piece-start-container {
+    flex-basis: 8%;
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    -o-transition: all .4s;
+    -ms-transition: all .4s;
+    transition: all .4s;
+}
+
+.puzzle-piece-start-container.puzzle-piece-hidden {
+    opacity: 0;
+    transform: translateY(-200%);
+}
+
+.puzzle-piece-image {
+    width: 100%;
+}
+
+.puzzle-piece {
+    -webkit-transition: transform .2s;
+    -moz-transition: transform .2s;
+    -o-transition: transform .2s;
+    -ms-transition: transform .2s;
+    transition: transform .2s;
+    cursor: pointer;
+    width: 100%;
+}
+
+.puzzle-piece-start-container .puzzle-piece:hover {
+    transform: scale(1.3);
+}
+
+/*when in a puzzle slot*/
+.practice-drop-location .practice-item {
+    width: 100%;
+    position: static;
+    top: 0;
+}
+
+/*difficulty button*/
+
+.increase-difficulty-container {
+    position: absolute;
+    right: -6px;
+    top: 30%;
+    background-color: rgba(255, 0, 0, 0.43);
+    width: 150px;
+    height: auto;
+    /* padding: 20px; */
+    z-index: 1000;
+    display: flex;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    -ms-transition: all .5s;
+    transition: all .5s;
+    -webkit-transition-delay: .3s;
+    -moz-transition-delay: .3s;
+    -o-transition-delay: .3s;
+    -ms-transition-delay: .3s;
+    transition-delay: .3s;
+}
+
+.increase-difficulty-container.difficulty-container-hidden {
+    transform: translateX(1000px);
+}
+
+.increase-difficulty-container button.increase-difficulty-container__button {
+    font-size: .9em;
+    padding: 10px;
+    margin: 18px;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    -ms-transition: all .2s;
+    transition: all .2s;
+}
+
+.increase-difficulty-container button.increase-difficulty-container__button:hover {
+    background-color: white;
+    color: red;
+}
+
+
+
+/*special classes*/
+
+.solved-image-hidden {
+    transform: translateY(-100%);
+}
+
+.win-rotation {
+    transform: rotateZ(360deg);
+}
+
+.disabled-button {
+    pointer-events: none;
+}
+
+.left-section__hint-button.disabled-button {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.bottom-pieces-hidden {
+    transform: translateY(-200px);
+    opacity: 0;
+}
+
+.puzzle-board-container__lose-overlay.lose-overlay--inactive {
+    transform: translateY(-100%);
+}
+
